@@ -1,0 +1,551 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>LMTS Token Airdrop Analysis Report</title>  
+    <style>  
+        * {  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+        }  body {  
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+        line-height: 1.6;  
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  
+        padding: 20px;  
+    }  
+      
+    .container {  
+        max-width: 1200px;  
+        margin: 0 auto;  
+        background: white;  
+        padding: 40px;  
+        border-radius: 10px;  
+        box-shadow: 0 10px 50px rgba(0,0,0,0.3);  
+    }  
+      
+    .header {  
+        text-align: center;  
+        margin-bottom: 40px;  
+        padding-bottom: 20px;  
+        border-bottom: 3px solid #667eea;  
+    }  
+      
+    .header h1 {  
+        color: #667eea;  
+        font-size: 2.5em;  
+        margin-bottom: 10px;  
+    }  
+      
+    .header .subtitle {  
+        color: #666;  
+        font-size: 1.1em;  
+    }  
+      
+    .download-btn {  
+        display: inline-block;  
+        background: #667eea;  
+        color: white;  
+        padding: 12px 30px;  
+        border-radius: 5px;  
+        text-decoration: none;  
+        font-weight: bold;  
+        margin: 10px 5px;  
+        cursor: pointer;  
+        border: none;  
+        font-size: 16px;  
+        transition: background 0.3s;  
+    }  
+      
+    .download-btn:hover {  
+        background: #5568d3;  
+    }  
+      
+    .stats-grid {  
+        display: grid;  
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  
+        gap: 20px;  
+        margin: 30px 0;  
+    }  
+      
+    .stat-card {  
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  
+        color: white;  
+        padding: 25px;  
+        border-radius: 8px;  
+        text-align: center;  
+    }  
+      
+    .stat-card .label {  
+        font-size: 0.9em;  
+        opacity: 0.9;  
+        margin-bottom: 8px;  
+    }  
+      
+    .stat-card .value {  
+        font-size: 2em;  
+        font-weight: bold;  
+    }  
+      
+    h2 {  
+        color: #667eea;  
+        margin-top: 40px;  
+        margin-bottom: 20px;  
+        font-size: 1.8em;  
+        border-bottom: 2px solid #e0e0e0;  
+        padding-bottom: 10px;  
+    }  
+      
+    h3 {  
+        color: #764ba2;  
+        margin-top: 30px;  
+        margin-bottom: 15px;  
+        font-size: 1.4em;  
+    }  
+      
+    table {  
+        width: 100%;  
+        border-collapse: collapse;  
+        margin: 20px 0;  
+        font-size: 0.85em;  
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);  
+        overflow-x: auto;  
+        display: block;  
+    }  
+      
+    table thead {  
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  
+        color: white;  
+    }  
+      
+    table th,  
+    table td {  
+        padding: 10px 8px;  
+        text-align: right;  
+        border: 1px solid #ddd;  
+        white-space: nowrap;  
+    }  
+      
+    table th:first-child,  
+    table td:first-child {  
+        text-align: left;  
+        font-weight: bold;  
+    }  
+      
+    table tbody tr:nth-child(even) {  
+        background: #f8f9fa;  
+    }  
+      
+    table tbody tr:hover {  
+        background: #e9ecef;  
+    }  
+      
+    .tier-allocation {  
+        background: #f8f9fa;  
+        padding: 20px;  
+        border-radius: 8px;  
+        margin: 20px 0;  
+    }  
+      
+    .tier-item {  
+        padding: 15px;  
+        margin: 10px 0;  
+        background: white;  
+        border-left: 4px solid #667eea;  
+        border-radius: 4px;  
+    }  
+      
+    .tier-item strong {  
+        color: #667eea;  
+        display: block;  
+        margin-bottom: 5px;  
+    }  
+      
+    .key-insight {  
+        background: #d1ecf1;  
+        border-left: 4px solid #17a2b8;  
+        padding: 15px;  
+        margin: 15px 0;  
+        border-radius: 4px;  
+        font-style: italic;  
+    }  
+      
+    .conclusion {  
+        background: #e7f3ff;  
+        padding: 25px;  
+        border-radius: 8px;  
+        margin: 30px 0;  
+        border-left: 4px solid #667eea;  
+    }  
+      
+    .disclaimer {  
+        background: #f8d7da;  
+        border-left: 4px solid #dc3545;  
+        padding: 20px;  
+        margin: 30px 0;  
+        border-radius: 4px;  
+        font-size: 0.95em;  
+    }  
+      
+    ul {  
+        margin: 15px 0 15px 30px;  
+    }  
+      
+    ul li {  
+        margin: 8px 0;  
+    }  
+      
+    ol {  
+        margin: 15px 0 15px 30px;  
+    }  
+      
+    ol li {  
+        margin: 8px 0;  
+    }  
+      
+    .footer {  
+        text-align: center;  
+        margin-top: 40px;  
+        padding-top: 20px;  
+        border-top: 2px solid #e0e0e0;  
+        color: #666;  
+        font-size: 0.9em;  
+    }  
+      
+    @media print {  
+        body {  
+            background: white;  
+            padding: 0;  
+        }  
+        .container {  
+            box-shadow: none;  
+            padding: 20px;  
+        }  
+        .download-btn {  
+            display: none;  
+        }  
+    }  
+</style>
+
+</head>  
+<body>  
+    <div class="container">  
+        <div class="header">  
+            <h1>LMTS Token Airdrop Allocation Analysis</h1>  
+            <p class="subtitle">Comprehensive Valuation Report Across Multiple Market Scenarios</p>  
+            <button class="download-btn" onclick="window.print()">Download as PDF</button>  
+        </div>  <h2>Executive Summary</h2>  
+    <p>This comprehensive analysis examines the potential value distribution of the LMTS token airdrop across various market capitalization and circulating supply scenarios. With a total supply of 1.5 billion tokens and an airdrop allocation of 0.25% (3.75 million tokens) distributed among 250 top Quackers, this report provides detailed projections to help participants understand potential returns.</p>  
+
+    <div class="stats-grid">  
+        <div class="stat-card">  
+            <div class="label">Total Supply</div>  
+            <div class="value">1.5B</div>  
+        </div>  
+        <div class="stat-card">  
+            <div class="label">Airdrop Allocation</div>  
+            <div class="value">3.75M</div>  
+        </div>  
+        <div class="stat-card">  
+            <div class="label">Total Recipients</div>  
+            <div class="value">250</div>  
+        </div>  
+    </div>  
+
+    <h2>Token Distribution Overview</h2>  
+      
+    <h3>Total Supply Structure</h3>  
+    <ul>  
+        <li><strong>Total Supply:</strong> 1,500,000,000 LMTS (1.5 billion)</li>  
+        <li><strong>Airdrop Allocation:</strong> 3,750,000 LMTS (0.25% of total supply)</li>  
+        <li><strong>Total Recipients:</strong> 250 Quackers (top performers)</li>  
+    </ul>  
+
+    <h3>Tier-Based Allocation System</h3>  
+    <p>The airdrop follows a merit-based distribution model rewarding top performers with larger allocations:</p>  
+
+    <div class="tier-allocation">  
+        <div class="tier-item">  
+            <strong>Tier 1: Top 1-15 (15 users)</strong>  
+            <div>Allocation: 30% of airdrop pool | Total: 1,125,000 LMTS | Per User: 75,000 LMTS</div>  
+        </div>  
+        <div class="tier-item">  
+            <strong>Tier 2: Top 16-50 (35 users)</strong>  
+            <div>Allocation: 20% of airdrop pool | Total: 750,000 LMTS | Per User: 21,429 LMTS</div>  
+        </div>  
+        <div class="tier-item">  
+            <strong>Tier 3: Top 51-100 (50 users)</strong>  
+            <div>Allocation: 20% of airdrop pool | Total: 750,000 LMTS | Per User: 15,000 LMTS</div>  
+        </div>  
+        <div class="tier-item">  
+            <strong>Tier 4: Top 101-200 (100 users)</strong>  
+            <div>Allocation: 20% of airdrop pool | Total: 750,000 LMTS | Per User: 7,500 LMTS</div>  
+        </div>  
+        <div class="tier-item">  
+            <strong>Tier 5: Top 201-250 (50 users)</strong>  
+            <div>Allocation: 10% of airdrop pool | Total: 375,000 LMTS | Per User: 7,500 LMTS</div>  
+        </div>  
+    </div>  
+
+    <h2>Valuation Scenarios</h2>  
+    <p>The actual value of these allocations depends heavily on two critical factors:</p>  
+    <ol>  
+        <li><strong>Market Capitalization</strong> - The total market value of the project</li>  
+        <li><strong>Circulating Supply at TGE</strong> - The number of tokens available for trading</li>  
+    </ol>  
+    <p>Below are detailed projections across multiple scenarios.</p>  
+
+    <h3>Scenario 1: Conservative Launch (100M Circulating Supply)</h3>  
+    <p><em>6.67% of total supply in circulation</em></p>  
+    <p>At this conservative launch scenario, token scarcity drives higher prices per token.</p>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Market Cap</th>  
+                <th>Price</th>  
+                <th>Top 1-15</th>  
+                <th>Top 16-50</th>  
+                <th>Top 51-100</th>  
+                <th>Top 101-200</th>  
+                <th>Top 201-250</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr><td>$50M</td><td>$0.50</td><td>$37,500</td><td>$10,714</td><td>$7,500</td><td>$3,750</td><td>$3,750</td></tr>  
+            <tr><td>$100M</td><td>$1.00</td><td>$75,000</td><td>$21,429</td><td>$15,000</td><td>$7,500</td><td>$7,500</td></tr>  
+            <tr><td>$200M</td><td>$2.00</td><td>$150,000</td><td>$42,857</td><td>$30,000</td><td>$15,000</td><td>$15,000</td></tr>  
+            <tr><td>$300M</td><td>$3.00</td><td>$225,000</td><td>$64,286</td><td>$45,000</td><td>$22,500</td><td>$22,500</td></tr>  
+            <tr><td>$400M</td><td>$4.00</td><td>$300,000</td><td>$85,714</td><td>$60,000</td><td>$30,000</td><td>$30,000</td></tr>  
+            <tr><td>$500M</td><td>$5.00</td><td>$375,000</td><td>$107,143</td><td>$75,000</td><td>$37,500</td><td>$37,500</td></tr>  
+            <tr><td>$600M</td><td>$6.00</td><td>$450,000</td><td>$128,571</td><td>$90,000</td><td>$45,000</td><td>$45,000</td></tr>  
+            <tr><td>$700M</td><td>$7.00</td><td>$525,000</td><td>$150,000</td><td>$105,000</td><td>$52,500</td><td>$52,500</td></tr>  
+            <tr><td>$800M</td><td>$8.00</td><td>$600,000</td><td>$171,429</td><td>$120,000</td><td>$60,000</td><td>$60,000</td></tr>  
+            <tr><td>$900M</td><td>$9.00</td><td>$675,000</td><td>$192,857</td><td>$135,000</td><td>$67,500</td><td>$67,500</td></tr>  
+            <tr><td>$1B</td><td>$10.00</td><td>$750,000</td><td>$214,286</td><td>$150,000</td><td>$75,000</td><td>$75,000</td></tr>  
+        </tbody>  
+    </table>  
+
+    <div class="key-insight">  
+        <strong>Key Insight:</strong> At 100M circulation with a $500M market cap, top-tier recipients could receive $375,000 worth of tokens.  
+    </div>  
+
+    <h3>Scenario 2: Moderate Launch (200M Circulating Supply)</h3>  
+    <p><em>13.33% of total supply in circulation</em></p>  
+    <p>A more typical launch scenario with moderate token availability.</p>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Market Cap</th>  
+                <th>Price</th>  
+                <th>Top 1-15</th>  
+                <th>Top 16-50</th>  
+                <th>Top 51-100</th>  
+                <th>Top 101-200</th>  
+                <th>Top 201-250</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr><td>$50M</td><td>$0.25</td><td>$18,750</td><td>$5,357</td><td>$3,750</td><td>$1,875</td><td>$1,875</td></tr>  
+            <tr><td>$100M</td><td>$0.50</td><td>$37,500</td><td>$10,714</td><td>$7,500</td><td>$3,750</td><td>$3,750</td></tr>  
+            <tr><td>$200M</td><td>$1.00</td><td>$75,000</td><td>$21,429</td><td>$15,000</td><td>$7,500</td><td>$7,500</td></tr>  
+            <tr><td>$300M</td><td>$1.50</td><td>$112,500</td><td>$32,143</td><td>$22,500</td><td>$11,250</td><td>$11,250</td></tr>  
+            <tr><td>$400M</td><td>$2.00</td><td>$150,000</td><td>$42,857</td><td>$30,000</td><td>$15,000</td><td>$15,000</td></tr>  
+            <tr><td>$500M</td><td>$2.50</td><td>$187,500</td><td>$53,571</td><td>$37,500</td><td>$18,750</td><td>$18,750</td></tr>  
+            <tr><td>$600M</td><td>$3.00</td><td>$225,000</td><td>$64,286</td><td>$45,000</td><td>$22,500</td><td>$22,500</td></tr>  
+            <tr><td>$700M</td><td>$3.50</td><td>$262,500</td><td>$75,000</td><td>$52,500</td><td>$26,250</td><td>$26,250</td></tr>  
+            <tr><td>$800M</td><td>$4.00</td><td>$300,000</td><td>$85,714</td><td>$60,000</td><td>$30,000</td><td>$30,000</td></tr>  
+            <tr><td>$900M</td><td>$4.50</td><td>$337,500</td><td>$96,429</td><td>$67,500</td><td>$33,750</td><td>$33,750</td></tr>  
+            <tr><td>$1B</td><td>$5.00</td><td>$375,000</td><td>$107,143</td><td>$75,000</td><td>$37,500</td><td>$37,500</td></tr>  
+        </tbody>  
+    </table>  
+
+    <div class="key-insight">  
+        <strong>Key Insight:</strong> Doubling the circulating supply halves the token price, reducing individual allocation values proportionally.  
+    </div>  
+
+    <h3>Scenario 3: Balanced Launch (300M Circulating Supply)</h3>  
+    <p><em>20% of total supply in circulation</em></p>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Market Cap</th>  
+                <th>Price</th>  
+                <th>Top 1-15</th>  
+                <th>Top 16-50</th>  
+                <th>Top 51-100</th>  
+                <th>Top 101-200</th>  
+                <th>Top 201-250</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr><td>$50M</td><td>$0.17</td><td>$12,500</td><td>$3,571</td><td>$2,500</td><td>$1,250</td><td>$1,250</td></tr>  
+            <tr><td>$100M</td><td>$0.33</td><td>$25,000</td><td>$7,143</td><td>$5,000</td><td>$2,500</td><td>$2,500</td></tr>  
+            <tr><td>$200M</td><td>$0.67</td><td>$50,000</td><td>$14,286</td><td>$10,000</td><td>$5,000</td><td>$5,000</td></tr>  
+            <tr><td>$300M</td><td>$1.00</td><td>$75,000</td><td>$21,429</td><td>$15,000</td><td>$7,500</td><td>$7,500</td></tr>  
+            <tr><td>$400M</td><td>$1.33</td><td>$100,000</td><td>$28,571</td><td>$20,000</td><td>$10,000</td><td>$10,000</td></tr>  
+            <tr><td>$500M</td><td>$1.67</td><td>$125,000</td><td>$35,714</td><td>$25,000</td><td>$12,500</td><td>$12,500</td></tr>  
+            <tr><td>$600M</td><td>$2.00</td><td>$150,000</td><td>$42,857</td><td>$30,000</td><td>$15,000</td><td>$15,000</td></tr>  
+            <tr><td>$700M</td><td>$2.33</td><td>$175,000</td><td>$50,000</td><td>$35,000</td><td>$17,500</td><td>$17,500</td></tr>  
+            <tr><td>$800M</td><td>$2.67</td><td>$200,000</td><td>$57,143</td><td>$40,000</td><td>$20,000</td><td>$20,000</td></tr>  
+            <tr><td>$900M</td><td>$3.00</td><td>$225,000</td><td>$64,286</td><td>$45,000</td><td>$22,500</td><td>$22,500</td></tr>  
+            <tr><td>$1B</td><td>$3.33</td><td>$250,000</td><td>$71,429</td><td>$50,000</td><td>$25,000</td><td>$25,000</td></tr>  
+        </tbody>  
+    </table>  
+
+    <h3>Scenario 4: High Liquidity (400M Circulating Supply)</h3>  
+    <p><em>26.67% of total supply in circulation</em></p>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Market Cap</th>  
+                <th>Price</th>  
+                <th>Top 1-15</th>  
+                <th>Top 16-50</th>  
+                <th>Top 51-100</th>  
+                <th>Top 101-200</th>  
+                <th>Top 201-250</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr><td>$50M</td><td>$0.13</td><td>$9,375</td><td>$2,679</td><td>$1,875</td><td>$938</td><td>$938</td></tr>  
+            <tr><td>$100M</td><td>$0.25</td><td>$18,750</td><td>$5,357</td><td>$3,750</td><td>$1,875</td><td>$1,875</td></tr>  
+            <tr><td>$200M</td><td>$0.50</td><td>$37,500</td><td>$10,714</td><td>$7,500</td><td>$3,750</td><td>$3,750</td></tr>  
+            <tr><td>$300M</td><td>$0.75</td><td>$56,250</td><td>$16,071</td><td>$11,250</td><td>$5,625</td><td>$5,625</td></tr>  
+            <tr><td>$400M</td><td>$1.00</td><td>$75,000</td><td>$21,429</td><td>$15,000</td><td>$7,500</td><td>$7,500</td></tr>  
+            <tr><td>$500M</td><td>$1.25</td><td>$93,750</td><td>$26,786</td><td>$18,750</td><td>$9,375</td><td>$9,375</td></tr>  
+            <tr><td>$600M</td><td>$1.50</td><td>$112,500</td><td>$32,143</td><td>$22,500</td><td>$11,250</td><td>$11,250</td></tr>  
+            <tr><td>$700M</td><td>$1.75</td><td>$131,250</td><td>$37,500</td><td>$26,250</td><td>$13,125</td><td>$13,125</td></tr>  
+            <tr><td>$800M</td><td>$2.00</td><td>$150,000</td><td>$42,857</td><td>$30,000</td><td>$15,000</td><td>$15,000</td></tr>  
+            <tr><td>$900M</td><td>$2.25</td><td>$168,750</td><td>$48,214</td><td>$33,750</td><td>$16,875</td><td>$16,875</td></tr>  
+            <tr><td>$1B</td><td>$2.50</td><td>$187,500</td><td>$53,571</td><td>$37,500</td><td>$18,750</td><td>$18,750</td></tr>  
+        </tbody>  
+    </table>  
+
+    <h3>Scenario 5: Very High Liquidity (500M Circulating Supply)</h3>  
+    <p><em>33.33% of total supply in circulation</em></p>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Market Cap</th>  
+                <th>Price</th>  
+                <th>Top 1-15</th>  
+                <th>Top 16-50</th>  
+                <th>Top 51-100</th>  
+                <th>Top 101-200</th>  
+                <th>Top 201-250</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr><td>$50M</td><td>$0.10</td><td>$7,500</td><td>$2,143</td><td>$1,500</td><td>$750</td><td>$750</td></tr>  
+            <tr><td>$100M</td><td>$0.20</td><td>$15,000</td><td>$4,286</td><td>$3,000</td><td>$1,500</td><td>$1,500</td></tr>  
+            <tr><td>$200M</td><td>$0.40</td><td>$30,000</td><td>$8,571</td><td>$6,000</td><td>$3,000</td><td>$3,000</td></tr>  
+            <tr><td>$300M</td><td>$0.60</td><td>$45,000</td><td>$12,857</td><td>$9,000</td><td>$4,500</td><td>$4,500</td></tr>  
+            <tr><td>$400M</td><td>$0.80</td><td>$60,000</td><td>$17,143</td><td>$12,000</td><td>$6,000</td><td>$6,000</td></tr>  
+            <tr><td>$500M</td><td>$1.00</td><td>$75,000</td><td>$21,429</td><td>$15,000</td><td>$7,500</td><td>$7,500</td></tr>  
+            <tr><td>$600M</td><td>$1.20</td><td>$90,000</td><td>$25,714</td><td>$18,000</td><td>$9,000</td><td>$9,000</td></tr>  
+            <tr><td>$700M</td><td>$1.40</td><td>$105,000</td><td>$30,000</td><td>$21,000</td><td>$10,500</td><td>$10,500</td></tr>  
+            <tr><td>$800M</td><td>$1.60</td><td>$120,000</td><td>$34,286</td><td>$24,000</td><td>$12,000</td><td>$12,000</td></tr>  
+            <tr><td>$900M</td><td>$1.80</td><td>$135,000</td><td>$38,571</td><td>$27,000</td><td>$13,500</td><td>$13,500</td></tr>  
+            <tr><td>$1B</td><td>$2.00</td><td>$150,000</td><td>$42,857</td><td>$30,000</td><td>$15,000</td><td>$15,000</td></tr>  
+        </tbody>  
+    </table>  
+
+    <h3>Scenario 6: Extreme Launch (750M Circulating Supply)</h3>  
+    <p><em>50% of total supply - HIGHLY UNLIKELY</em></p>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Market Cap</th>  
+                <th>Price</th>  
+                <th>Top 1-15</th>  
+                <th>Top 16-50</th>  
+                <th>Top 51-100</th>  
+                <th>Top 101-200</th>  
+                <th>Top 201-250</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr><td>$50M</td><td>$0.07</td><td>$5,000</td><td>$1,429</td><td>$1,000</td><td>$500</td><td>$500</td></tr>  
+            <tr><td>$100M</td><td>$0.13</td><td>$10,000</td><td>$2,857</td><td>$2,000</td><td>$1,000</td><td>$1,000</td></tr>  
+            <tr><td>$200M</td><td>$0.27</td><td>$20,000</td><td>$5,714</td><td>$4,000</td><td>$2,000</td><td>$2,000</td></tr>  
+            <tr><td>$300M</td><td>$0.40</td><td>$30,000</td><td>$8,571</td><td>$6,000</td><td>$3,000</td><td>$3,000</td></tr>  
+            <tr><td>$400M</td><td>$0.53</td><td>$40,000</td><td>$11,429</td><td>$8,000</td><td>$4,000</td><td>$4,000</td></tr>  
+            <tr><td>$500M</td><td>$0.67</td><td>$50,000</td><td>$14,286</td><td>$10,000</td><td>$5,000</td><td>$5,000</td></tr>  
+            <tr><td>$600M</td><td>$0.80</td><td>$60,000</td><td>$17,143</td><td>$12,000</td><td>$6,000</td><td>$6,000</td></tr>  
+            <tr><td>$700M</td><td>$0.93</td><td>$70,000</td><td>$20,000</td><td>$14,000</td><td>$7,000</td><td>$7,000</td></tr>  
+            <tr><td>$800M</td><td>$1.07</td><td>$80,000</td><td>$22,857</td><td>$16,000</td><td>$8,000</td><td>$8,000</td></tr>  
+            <tr><td>$900M</td><td>$1.20</td><td>$90,000</td><td>$25,714</td><td>$18,000</td><td>$9,000</td><td>$9,000</td></tr>  
+            <tr><td>$1B</td><td>$1.33</td><td>$100,000</td><td>$28,571</td><td>$20,000</td><td>$10,000</td><td>$10,000</td></tr>  
+        </tbody>  
+    </table>  
+
+    <h2>Comparative Analysis</h2>  
+
+    <h3>Best Case Scenarios</h3>  
+    <div class="conclusion">  
+        <p><strong>Maximum Value: $750,000 per top-tier holder</strong></p>  
+        <ul>  
+            <li>Conditions: 100M circulating supply + $1B market cap</li>  
+            <li>Likelihood: Requires very successful project with conservative token release</li>  
+        </ul>  
+        <p><strong>Realistic High Value: $150,000-$250,000 per top-tier holder</strong></p>  
+        <ul>  
+            <li>Conditions: 200-300M circulating supply + $500M-$1B market cap</li>  
+            <li>Likelihood: Achievable for strong projects with good market reception</li>  
+        </ul>  
+    </div>  
+
+    <h3>Conservative Estimates</h3>  
+    <div class="conclusion">  
+        <p><strong>Moderate Value: $37,500-$75,000 per top-tier holder</strong></p>  
+        <ul>  
+            <li>Conditions: 300-400M circulating supply + $200M-$300M market cap</li>  
+            <li>Likelihood: Reasonable baseline expectations</li>  
+        </ul>  
+        <p><strong>Lower Bound: $7,500-$18,750 per top-tier holder</strong></p>  
+        <ul>  
+            <li>Conditions: 500M+ circulating supply + $50M-$100M market cap</li>  
+            <li>Likelihood: Worst-case scenario if launch underperforms</li>  
+        </ul>  
+    </div>  
+
+    <h2>Key Takeaways</h2>  
+    <ul>  
+        <li><strong>Circulating Supply is Critical:</strong> The amount of tokens in circulation at TGE dramatically impacts individual token value. Lower circulation equals higher per-token value.</li>  
+        <li><strong>Market Cap Drives Overall Value:</strong> A project's market capitalization directly determines the total dollar value of allocations.</li>  
+        <li><strong>Tier Positioning Matters Significantly:</strong> Top 15 holders receive 5-10x more value than lower tiers, incentivizing strong early participation.</li>  
+        <li><strong>Realistic Expectations:</strong> Most successful token launches have 15-25% of total supply circulating at TGE (225M-375M tokens for LMTS).</li>  
+        <li><strong>Risk Considerations:</strong> These calculations assume successful market launch. Actual values may vary significantly based on market conditions, project execution, and overall crypto market sentiment.</li>  
+    </ul>  
+
+    <h2>Conclusion</h2>  
+    <div class="conclusion">  
+        <p>The LMTS airdrop presents potentially significant value for top performers, with returns ranging from thousands to hundreds of thousands of dollars depending on launch conditions. Participants in the top tier (1-15) stand to benefit most substantially, while even lower-tier recipients (201-250) could see meaningful returns in optimistic scenarios.</p>  
+          
+        <p>The most realistic scenarios suggest circulating supplies between 200M-400M tokens (13-27% of total supply) with market caps between $100M-$500M, which would deliver $18,750-$187,500 to top-tier holders.</p>  
+    </div>  
+
+    <div class="disclaimer">  
+        <strong>Disclaimer:</strong> This analysis is based on speculative data and hypothetical scenarios. Actual token performance, market capitalization, and circulating supply at TGE may differ significantly. Always conduct your own research and never invest more than you can afford to lose.  
+    </div>  
+
+    <div class="footer">  
+        <p><strong>Analysis Prepared:</strong> October 2025</p>  
+        <p><strong>Data Based On:</strong> 1.5B total supply, 0.25% airdrop allocation, 250 recipients</p>  
+    </div>  
+    
+    <div class="footer">
+        Analysis by 0𝙿𝚃𝚃𝙸𝙼𝚄𝚂🛡️ | 魚男 🐟
+    </div>
+
+</div>
+
+
+</body>  
+</html>
